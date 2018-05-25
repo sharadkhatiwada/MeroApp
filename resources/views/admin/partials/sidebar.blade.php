@@ -34,10 +34,10 @@
 
                 </li>
                 <li class="nav-item">
-                    <a href="pages/widgets.html" class="nav-link">
+                    <a href="{{route('contact.create')}}" class="nav-link">
                         <i class="nav-icon fa fa-th"></i>
                         <p>
-                            Widgets
+                            Contact Book
                             <span class="right badge badge-danger">New</span>
                         </p>
                     </a>

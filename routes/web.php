@@ -30,4 +30,6 @@ Route::prefix('console')->group(function () {
     Route::get('/password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
     Route::get('/dashboard', 'Admin\DashboardController@index')->name('dashboard');
     Route::get('/', 'Admin\DashboardController@index')->name('');
+
+    Route::get('/contact', 'Admin\ContactController@create')->name('contact.create');
 });
