@@ -69,7 +69,8 @@ class ContactController extends Controller
             'fullname' => 'required|max:20',
             'address' => 'required',
             'mobile' => 'required|max:10',
-            'email' => 'required|email',
+            'email' => 'unique:contact_book,email,'.$request->id
+            //'email' => 'required|email|unique:contact_book,email,:email',
             //'status' => 'required',
 
         ]);
