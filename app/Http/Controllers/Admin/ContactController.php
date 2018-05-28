@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-
+use App\Admin\ContactBook;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -24,18 +24,69 @@ class ContactController extends Controller
      */
     public function index()
     {
-        return view('admin.contact.index');
+        $contacts = ContactBook::paginate(5);
+        return view ( 'admin.contact.index',compact('contacts') );
     }
     public function create()
     {
         return view('admin.contact.create');
     }
-    public function edit()
+
+
+
+    public function store(Request $request)
     {
-        return view('admin.contact');
+        $this->validate($request, [
+            'fullname' => 'required|max:20',
+            'address' => 'required',
+            'mobile' => 'required|max:10',
+            'email' => 'required|email|unique:contact_book,email',
+            //'status' => 'required',
+
+        ]);
+
+        ContactBook::create([
+            'fullname' => $request->get('fullname'),
+            'address' => $request->get('address'),
+            'mobile' => $request->get('mobile'),
+            'email' => $request->get('email'),
+            'status' => ($request->get('status') == 'on' ? 1 : 0)
+        ]);
+        //ContactBook::create($request->all());
+
+        return back()->with('success', 'You have just created one contact');
     }
-    public function delete()
+    public function edit($id)
     {
-        return view('admin.contact');
+        $contact = ContactBook::find($id);
+        return view('admin.contact.edit',compact('contact'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        //Validate
+        $this->validate($request, [
+            'fullname' => 'required|max:20',
+            'address' => 'required',
+            'mobile' => 'required|max:10',
+            'email' => 'required|email',
+            //'status' => 'required',
+
+        ]);
+        $data=([
+            'fullname' => $request->get('fullname'),
+            'address' => $request->get('address'),
+            'mobile' => $request->get('mobile'),
+            'email' => $request->get('email'),
+            'status' => ($request->get('status') == 'on' ? 1 : 0)
+        ]);
+        ContactBook::find($id)->update($data);
+        return redirect()->route('contact')->with('success','Contact updated successfully');
+    }
+    public function destroy($id)
+    {
+        ContactBook::find($id)->delete();
+        return redirect()->route('contact')
+            ->with('success','Contact deleted successfully');
     }
 }

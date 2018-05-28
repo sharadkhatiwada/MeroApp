@@ -34,7 +34,7 @@
 
                 </li>
                 <li class="nav-item">
-                    <a href="{{route('contact.create')}}" class="nav-link">
+                    <a href="{{route('contact')}}" class="nav-link">
                         <i class="nav-icon fa fa-th"></i>
                         <p>
                             Contact Book

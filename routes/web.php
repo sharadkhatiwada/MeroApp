@@ -31,5 +31,10 @@ Route::prefix('console')->group(function () {
     Route::get('/dashboard', 'Admin\DashboardController@index')->name('dashboard');
     Route::get('/', 'Admin\DashboardController@index')->name('');
 
-    Route::get('/contact', 'Admin\ContactController@create')->name('contact.create');
+    Route::get('/contact-book', 'Admin\ContactController@index')->name('contact');
+    Route::get('/contact-book/create', 'Admin\ContactController@create')->name('contact.create');
+    Route::post('/contact-book/create', 'Admin\ContactController@store')->name('contact.store');
+    Route::get('/contact-book/delete/{id}','Admin\ContactController@destroy')->name('contact.destroy');
+    Route::get('/contact-book/edit/{id}','Admin\ContactController@edit')->name('contact.edit');
+    Route::post('/contact-book/edit/{id}','Admin\ContactController@update')->name('contact.update');
 });

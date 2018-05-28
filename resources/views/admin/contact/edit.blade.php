@@ -6,7 +6,7 @@
 <ol class="breadcrumb float-sm-right">
     <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Home</a></li>
     <li class="breadcrumb-item"><a href="{{route('contact')}}">Contact Book</a></li>
-    <li class="breadcrumb-item active">Create</li>
+    <li class="breadcrumb-item active">Edit</li>
 </ol>
 @stop
 @section('content')
@@ -15,7 +15,7 @@
             <!-- SELECT2 EXAMPLE -->
             <div class="card card-default">
                 <div class="card-header">
-                    <h3 class="card-title">Create Contact</h3>
+                    <h3 class="card-title">Edit Contact</h3>
 
                     <div class="card-tools">
                         <button type="button" class="btn btn-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
@@ -49,30 +49,30 @@
                                         <p>{{ \Session::get('success') }}</p>
                                     </div>
                                 @endif
-                                <form role="form" action="{{route('contact.store')}}" method="post">
+                                <form role="form" action="{{route('contact.update',$contact->id)}}" method="post">
                                     {{csrf_field()}}
                                     <div class="card-body">
                                         <div class="form-group">
                                             <label for="fullname">Full Name</label>
-                                            <input type="text" name="fullname" class="form-control" value="{{old('fullname')}}" id="fullname" placeholder="Enter Full Name">
+                                            <input type="text" name="fullname" class="form-control" value="{{$contact->fullname}}" id="fullname" placeholder="Enter Full Name">
                                         </div>
                                         <div class="form-group">
                                             <label for="address">Address</label>
-                                            <input type="text" name="address" class="form-control" value="{{old('address')}}" id="address" placeholder="Enter Address">
+                                            <input type="text" name="address" class="form-control" value="{{$contact->address}}" id="address" placeholder="Enter Address">
                                         </div>
                                         <div class="form-group">
                                             <label for="mobile">Mobile</label>
-                                            <input type="text" name="mobile" class="form-control" value="{{old('mobile')}}" address id="mobile" placeholder="Enter Your Mobile no">
+                                            <input type="text" name="mobile" class="form-control" value="{{$contact->mobile}}" address id="mobile" placeholder="Enter Your Mobile no">
                                         </div>
                                         <div class="form-group">
                                             <label for="email">Email</label>
-                                            <input type="email" name="email" class="form-control" value="{{old('email')}}" id="email" placeholder="Enter email">
+                                            <input type="email" name="email" class="form-control" value="{{$contact->email}}" id="email" placeholder="Enter email">
                                         </div>
 
                                         <div class="form-group">
                                             <label for="status">Status</label>
                                         <div class="form-check">
-                                            <input type="checkbox"  name="status" class="form-check-input" id="status" checked>
+                                            <input type="checkbox"  name="status" class="form-check-input" id="status" {{($contact->status) == '1' ? 'checked' : ''}}>
                                             <label class="form-check-label" for="status">Active</label>
                                         </div>
                                         </div>
