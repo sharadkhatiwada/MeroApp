@@ -95,7 +95,9 @@
                                                     <td>{{$data->address}}</td>
                                                     <td>{{$data->mobile}}</td>
                                                     <td>{{$data->email}}</td>
-                                                    <td>{{$data->status == '1' ? 'Active' : 'Inactive'}}</td>
+                                                    <td>
+                                                        <button type="button" class="btn btn-block btn-outline-{{$data->status == '1' ? 'success' : 'secondary'}} btn-sm">{{$data->status == '1' ? ' Active ' : ' Inactive '}}</button>
+                                                       </td>
 
                                                     <td>
 
