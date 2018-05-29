@@ -35,6 +35,7 @@ Route::prefix('console')->group(function () {
     Route::get('/contact-book/create', 'Admin\ContactController@create')->name('contact.create');
     Route::post('/contact-book/create', 'Admin\ContactController@store')->name('contact.store');
     Route::get('/contact-book/delete/{id}','Admin\ContactController@destroy')->name('contact.destroy');
+    Route::post('/contact-book/delete','Admin\ContactController@destroy1')->name('contact.destroy1');
     Route::get('/contact-book/edit/{id}','Admin\ContactController@edit')->name('contact.edit');
     Route::post('/contact-book/edit/{id}','Admin\ContactController@update')->name('contact.update');
 });

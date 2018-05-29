@@ -81,5 +81,8 @@
 
 <!-- PAGE SCRIPTS -->
 <script src="{{ asset('backend/dist/js/pages/dashboard2.js') }}"></script>
+
+@yield('additional-js')
+@yield('after-script')
 </body>
 </html>

@@ -90,4 +90,11 @@ class ContactController extends Controller
         return redirect()->route('contact')
             ->with('success','Contact deleted successfully');
     }
+    public function destroy1(Request $request)
+    {
+        $id = $request->name;
+        ContactBook::find($id)->delete();
+        return redirect()->route('contact')
+            ->with('success','Contact deleted successfully');
+    }
 }

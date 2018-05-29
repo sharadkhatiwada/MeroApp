@@ -8,6 +8,7 @@
     <li class="breadcrumb-item active"><a href="{{route('contact')}}">Contact Book</a></li>
 </ol>
 @stop
+
 @section('content')
     <section class="content">
         <div class="container-fluid">
@@ -103,7 +104,8 @@
 
                                                         <a href="{{action('Admin\ContactController@edit', $data->id)}}" type="button"  class="btn btn-block btn-info btn-sm "><i class="fa fa-edit"></i> Edit</a></td>
                                                     <td>
-                                                        <a href="{{action('Admin\ContactController@destroy', $data->id)}}" type="button"  class="btn btn-block btn-danger btn-sm"><i class="fa fa-trash"></i> Delete</a>
+                                                        <a href="#" onclick="confirmDelete()">Delete</a>
+                                                        {{--<a href="{{action('Admin\ContactController@destroy', $data->id)}}" type="button"  class="btn btn-block btn-danger btn-sm"><i class="fa fa-trash"></i> Delete</a>--}}
 
                                                     </td>
 
@@ -145,4 +147,44 @@
             <!-- /.row -->
         </div><!-- /.container-fluid -->
     </section>
+@stop
+@section('additional-js')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js" ></script>
+@stop
+@section('after-script')
+    <script type="text/javascript">
+        function confirmDelete() {
+            swal({
+                title: "Are you sure?",
+                text: "Once deleted, you will not be able to recover this imaginary file!",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+                .then((willDelete) => {
+                if (willDelete) {
+                    $.ajax({
+                        type: "POST",
+                        url: "{{url('console/contact/delete')}}",
+                        data: {
+                            id: 1
+                        },
+                        success: function(result){
+                            table.draw();
+                        },
+                        async: false
+                    });
+
+
+
+                    swal("Poof! Your imaginary file has been deleted!", {
+                        icon: "success",
+                    });
+                } else {
+                    swal("Your imaginary file is safe!");
+        }
+        });
+        }
+    </script>
+
 @stop
