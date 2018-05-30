@@ -104,7 +104,13 @@
 
                                                         <a href="{{action('Admin\ContactController@edit', $data->id)}}" type="button"  class="btn btn-block btn-info btn-sm "><i class="fa fa-edit"></i> Edit</a></td>
                                                     <td>
-                                                        <a href="#" onclick="confirmDelete()">Delete</a>
+
+                                                        <form class="form-horizontal delete-btn" method="POST" action="{{ route('contact.destroyed') }}">
+                                                            <input type="hidden" name="id" value="{{$data->id}}">
+                                                            {{ csrf_field() }}
+                                                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                                        </form>
+                                                        {{--<a href="#" onclick="confirmDelete()">Delete</a>--}}
                                                         {{--<a href="{{action('Admin\ContactController@destroy', $data->id)}}" type="button"  class="btn btn-block btn-danger btn-sm"><i class="fa fa-trash"></i> Delete</a>--}}
 
                                                     </td>

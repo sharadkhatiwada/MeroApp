@@ -84,15 +84,15 @@ class ContactController extends Controller
         ContactBook::find($id)->update($data);
         return redirect()->route('contact')->with('success','Contact updated successfully');
     }
-    public function destroy($id)
+    public function destroy1($id)
     {
         ContactBook::find($id)->delete();
         return redirect()->route('contact')
             ->with('success','Contact deleted successfully');
     }
-    public function destroy1(Request $request)
+    public function destroy(Request $request,$id)
     {
-        $id = $request->name;
+        //$id = $request->id;
         ContactBook::find($id)->delete();
         return redirect()->route('contact')
             ->with('success','Contact deleted successfully');
